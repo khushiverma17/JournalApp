@@ -21,13 +21,9 @@ public class UserService {
 
 
     public void saveNewUser(User user){
-        System.out.println("hdkjfl");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println("hi");
-        user.setRoles(Arrays.asList("USER"));
-        System.out.println("j");
+        user.setRoles(Arrays.asList("ROLE_USER"));
         userRepository.save(user);
-        System.out.println("hello*******");
     }
 
     public void saveUser(User user){
@@ -49,7 +45,7 @@ public class UserService {
     }
 
     public User findByUserName(String userName){
-        User ans =  userRepository.findByUserName(userName);
-        return ans;
+        User user =  userRepository.findByUserName(userName);
+        return user;
     }
 }

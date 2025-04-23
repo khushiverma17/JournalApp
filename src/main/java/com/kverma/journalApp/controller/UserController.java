@@ -35,8 +35,10 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
 
-        User oldUser = userService.findByUserName(user.getUserName());
+        User oldUser = userService.findByUserName(name);
+        if(oldUser == null) System.out.println("null");
         if(oldUser !=  null){
+            System.out.println("not null");
             oldUser.setUserName(user.getUserName());
             oldUser.setPassword(user.getPassword());
 
@@ -46,7 +48,7 @@ public class UserController {
     }
 
     @DeleteMapping
-    public ResponseEntity<?> deleteUserById(){
+    public ResponseEntity<?> deleteUserById() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         userRepository.deleteByUserName(authentication.getName());
